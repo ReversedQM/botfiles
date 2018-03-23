@@ -1,0 +1,60 @@
+import discord
+import random
+import time
+import asyncio
+
+
+
+client = discord.Client()
+
+
+Rates=open("ERate.txt","r")
+dollar=Rates.readline(0)
+euro=Rates.readline(1)
+pound=Rates.readline(2)
+sterling=Rates.readline(3)
+bitcoin=Rates.readline(4)
+
+
+@client.event
+async def on_message(message):
+    if message.content.startswith("eco.tradingsystem"):
+        tradesystem=("**The Economist™ trade system\nIts a buying-selling system\n For an example\nto earn money you will buy dollars when it costs 120Eco you will sell it when its 140")
+        await client.send_message(message.channel,tradesystem)
+
+
+
+    if message.content.startswith("eco.about"):
+        aboutbot=(" I am a Economy bot created by ¿Economist?#7027\nhttps://discord.gg/ECFUGQ9")
+        await client.send_message(message.channel,aboutbot)
+
+
+    if message.content.startswith("eco.help"):
+        help = ("**eco.tradingsystem\neco.about**\neco.rates\n```How to earn money, trading system,\nExample Game:\neco.buy 10 dollars\nfor an example you buy 10 dollars with 3500"
+                "Σ's when dollar exchange rate increases you should sell it to earn money it can decrease too you cant know will it increase or decrease\nexchange rate is changing between 30 minutes and 4 hours```"
+                "**WRITE eco.rates TO SEE EXCHANGE RATES!**")
+        await client.send_message(message.channel,help)
+
+
+    if message.content.startswith("eco.rates"):
+        Rates = open("ERate.txt", "r")
+        dollar = Rates.readline()
+        euro = Rates.readline()
+        pound = Rates.readline()
+        sterling = Rates.readline()
+        bitcoin = Rates.readline()
+        Rates.close()
+        Ratess=("1 Dollar = {}Σ\n1 Euro = {}Σ\n1 Pound = {}Σ\n1 Sterling = {}Σ\n1 Bitcoin = {}Σ".format(dollar,euro,pound,sterling,bitcoin))
+        await client.send_message(message.channel,Ratess)
+
+
+
+@client.event
+async def on_ready():
+    print("Logged in as")
+    print(client.user.name)
+    print(client.user.id)
+    print("--------------------")
+
+client.run('NDI0OTQwNDY3NDQ1MzAxMjU4.DZAMKg.IwfekyfnaLel5hK8X6x1OPrtbDk')
+
