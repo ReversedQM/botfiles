@@ -1,0 +1,19 @@
+import random
+import time
+
+while (True):
+    dollar=random.randint(65, 360)
+    euro=random.randint(70, 510)
+    pound=random.randint(60,450)
+    sterling=random.randint(60,490)
+    bitcoin=random.randint(520,4300)
+
+    Rates=open("ERate.txt","w")
+    Rates.write("{}\n{}\n{}\n{}\n{}\n".format(dollar,euro ,pound,sterling,bitcoin))
+    Rates.close()
+
+
+    ST=random.randint(1800,14400)
+    print(ST)
+    time.sleep(ST)
+
